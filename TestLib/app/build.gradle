@@ -1,0 +1,52 @@
+apply plugin: 'com.android.application'
+buildscript {
+    repositories {
+        maven {
+            url uri('../repo')
+        }
+    }
+    dependencies {
+//        classpath 'com.aheadlcx:time:1.0.0'
+    }
+}
+//apply plugin: 'thinR'
+//thinR{
+//    buildVariants = "Release"
+//}
+android {
+    compileSdkVersion 25
+    buildToolsVersion "25.0.2"
+    defaultConfig {
+        applicationId "me.aheadlcx.testlib"
+        minSdkVersion 17
+        targetSdkVersion 23
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    signingConfigs {
+        release {
+            storeFile file('../keystores/loanmarket.keystores.jks')
+            keyAlias 'androidkey'
+            keyPassword 'android'
+            storePassword 'android'
+        }
+    }
+    buildTypes {
+        release {
+            signingConfig signingConfigs.release
+            shrinkResources false
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    compile project(':base')
+    compile 'junit:junit:4.12'
+    compile 'com.android.support.test:runner:1.0.1'
+    compile 'com.android.support.test.espresso:espresso-core:3.0.1'
+}

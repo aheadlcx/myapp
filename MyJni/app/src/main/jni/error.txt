@@ -1,0 +1,13 @@
+/Users/apple/.sdkman/candidates/java/current/bin/java
+
+/Users/apple/.sdkman/candidates/java/current
+
+gcc -shared -I /Users/apple/.sdkman/candidates/java/current/include -fPIC test.cpp -o libjni-test.so
+
+
+/Library/Java/JavaVirtualMachines/jdk1.8.0_73.jdk/Contents/Home
+
+gcc -shared -I /Library/Java/JavaVirtualMachines/jdk1.8.0_73.jdk/Contents/Home/include -fPIC test.cpp -o libjni-test.so
+
+
+gcc -shared -I /Library/Java/JavaVirtualMachines/jdk1.8.0_73.jdk/Contents/Home/include -fPIC test.c -o libjni-test.so

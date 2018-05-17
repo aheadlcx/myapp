@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent">
+
+    <EditText
+        android:layout_width="match_parent"
+        android:minHeight="100dp"
+        android:id="@+id/input"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:minHeight="100dp"
+        android:layout_width="match_parent"
+        android:text="发送消息给服务端"
+        android:id="@+id/txtSend"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:minHeight="100dp"
+        android:layout_width="match_parent"
+        android:text="收到服务器来的消息"
+        android:id="@+id/txtGet"
+        android:layout_height="wrap_content"/>
+</LinearLayout>
