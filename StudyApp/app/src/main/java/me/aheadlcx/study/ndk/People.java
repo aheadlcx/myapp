@@ -14,4 +14,5 @@ public class People {
     }
     public static native String sayPeople();
     public static native String getName();
+    public static native boolean checkPackageName(String packageName);
 }

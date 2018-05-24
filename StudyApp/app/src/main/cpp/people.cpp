@@ -14,4 +14,15 @@ JNIEXPORT jstring JNICALL
 Java_me_aheadlcx_study_ndk_People_getName(JNIEnv *env, jclass type) {
     LOGE("hello aheadlcx");
     return env->NewStringUTF("my name is aheadlcx");
+}extern "C"
+JNIEXPORT jboolean JNICALL
+Java_me_aheadlcx_study_ndk_People_checkPackageName(JNIEnv *env, jclass type, jstring packageName_) {
+    const char *packageName = env->GetStringUTFChars(packageName_, 0);
+    int i = strcmp(packageName, "me.aheadlcx.study");
+    env->ReleaseStringUTFChars(packageName_, packageName);
+    if (i == 0){
+        return static_cast<jboolean>(true);
+    } else{
+        return static_cast<jboolean>(false);
+    }
 }

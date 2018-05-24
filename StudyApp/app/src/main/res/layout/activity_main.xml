@@ -25,6 +25,25 @@
         android:id="@+id/txtShow"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
+
+    <TextView
+        android:id="@+id/txtPack"
+        android:layout_width="match_parent"
+        android:gravity="center"
+        android:textColor="#111"
+        android:text="包名"
+        android:background="#5fb720"
+        android:layout_height="100dp"/>
+
+    <TextView
+        android:id="@+id/txtPackError"
+        android:layout_width="match_parent"
+        android:gravity="center"
+        android:textColor="#111"
+        android:text="包名 error"
+        android:background="#5fb720"
+        android:layout_height="100dp"/>
+
 </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>

@@ -14,6 +14,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         TextView txtShow = findViewById(R.id.txtShow);
-        txtShow.setText(People.getName());
+        txtShow.setText(People.sayPeople());
     }
 }

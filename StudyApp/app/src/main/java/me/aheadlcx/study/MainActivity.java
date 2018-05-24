@@ -33,6 +33,21 @@ public class MainActivity extends AppCompatActivity {
                 Log.i(TAG, "onClick: name = " + name);
             }
         });
+        findViewById(R.id.txtPack).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                boolean checkPackageName = People.checkPackageName("me.aheadlcx.study");
+                Log.i(TAG, "onClick: checkPackageName" + checkPackageName);
+            }
+        });
+
+        findViewById(R.id.txtPackError).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                boolean checkPackageName = People.checkPackageName("me.aheadlcx.study2");
+                Log.i(TAG, "onClick: checkPackageName error" + checkPackageName);
+            }
+        });
     }
 
     /**
