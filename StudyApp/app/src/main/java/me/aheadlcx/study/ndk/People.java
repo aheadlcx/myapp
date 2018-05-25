@@ -1,5 +1,7 @@
 package me.aheadlcx.study.ndk;
 
+import android.content.Context;
+
 /**
  * Description:
  * author: aheadlcx
@@ -15,4 +17,5 @@ public class People {
     public static native String sayPeople();
     public static native String getName();
     public static native boolean checkPackageName(String packageName);
+    public static native boolean checkSign(Context context);
 }

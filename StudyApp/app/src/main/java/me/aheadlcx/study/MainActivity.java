@@ -1,11 +1,16 @@
 package me.aheadlcx.study;
 
+import android.content.Context;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.Signature;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
+import me.aheadlcx.study.ndk.ContextImpl;
 import me.aheadlcx.study.ndk.People;
 
 public class MainActivity extends AppCompatActivity {
@@ -48,6 +53,29 @@ public class MainActivity extends AppCompatActivity {
                 Log.i(TAG, "onClick: checkPackageName error" + checkPackageName);
             }
         });
+        findViewById(R.id.txtSign).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ContextImpl.getSign(MainActivity.this);
+                ContextImpl.getInstance().init(MainActivity.this);
+                People.checkSign(MainActivity.this);
+            }
+        });
+        ContextImpl.getInstance().init(this);
+    }
+
+    private String getSign(Context context){
+        try {
+            PackageInfo packageInfo = context.getPackageManager().getPackageInfo(context.getPackageName(), PackageManager
+                    .GET_SIGNATURES);
+            Signature[] signatures = packageInfo.signatures;
+            String sign = new String(signatures[0].toByteArray());
+            Log.i(TAG, "getSign: " + sign);
+            return sign;
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+            return "";
+        }
     }
 
     /**

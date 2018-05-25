@@ -44,6 +44,16 @@
         android:background="#5fb720"
         android:layout_height="100dp"/>
 
+    <TextView
+        android:id="@+id/txtSign"
+        android:layout_width="match_parent"
+        android:gravity="center"
+        android:textColor="#111"
+        android:text="txtSign"
+        android:background="#5fb720"
+        android:layout_height="100dp"/>
+
+
 </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>
