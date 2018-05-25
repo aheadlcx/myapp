@@ -97,10 +97,50 @@ Java_me_aheadlcx_study_ndk_People_checkPackageName(JNIEnv *env, jclass type, jst
         return static_cast<jboolean>(false);
     }
 }
+
+//检测是否在被调试
+//void create_thread_check_traceid(){
+//    int err = pthread_create (&t_id, NULL, thread_fuction, NULL);
+//    if (err != 0){
+//        LOGE("create thread fail: %s\n", strerror(err));
+//    }
+//}
+
+//void thread_fuction(){
+//    int pid = getpid();
+//    char file_name[20] = {'\0'};
+//    char linestr[256];
+//    int i =0,traceid;
+//    FILE *fp;
+//    while(1){
+//        i = 0;
+//        fp = fopen(file_name, "r");
+//        if (fp == NULL){
+//            break;
+//        }
+//        while (!feof(fp)){
+//            fgets(linestr, 256, fp);
+//            if (i == 5){
+//                traceid = getnumberfor_str(linestr);
+//                if (traceid > 0){
+//                    LOGE("I wae be traced... trace pid:%d", traceid);
+//                    exit(0);
+//                }
+//                break;
+//            }
+//            i++;
+//        }
+//        fclose(fp);
+//        sleep(5);
+//
+//    }
+//}
+
 extern "C"
 JNIEXPORT jboolean JNICALL
 Java_me_aheadlcx_study_ndk_People_checkSign(JNIEnv *env, jclass type, jobject context) {
-//    jclass contextImpl = env->FindClass("me/aheadlcx/study/ndk/ContextImpl");
+    char* classname = const_cast<char *>("me/aheadlcx/study/ndk/ContextImpl");
+    jclass contextImpl = env->FindClass(classname);
 //    jmethodID methodID = env->GetStaticMethodID(contextImpl, "getSign", "()Ljava/lang/String;");
 //    jstring j_result = static_cast<jstring>(env->CallStaticObjectMethod(contextImpl, methodID));
 
