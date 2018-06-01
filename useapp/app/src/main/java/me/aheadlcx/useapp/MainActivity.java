@@ -19,6 +19,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 People.checkPackageName("sss");
+//                System.exit(1);
+            }
+        });
+        findViewById(R.id.txtExit).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                System.exit(0);
             }
         });
     }

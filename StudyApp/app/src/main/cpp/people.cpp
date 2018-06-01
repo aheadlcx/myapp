@@ -22,7 +22,7 @@ void ByteToHexStr(const char *source, char *dest, int sourceLen) {
             dest[i * 2] = highByte;
         }
 
-        lowByte += 0x30;
+        lowByte += 0x30;∑
         if (lowByte > 0x39) {
             dest[i * 2 + 1] = lowByte + 0x07;
         } else {

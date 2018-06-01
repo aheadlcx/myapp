@@ -10,6 +10,9 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
 import me.aheadlcx.study.ndk.ContextImpl;
 import me.aheadlcx.study.ndk.People;
 
@@ -62,6 +65,24 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         ContextImpl.getInstance().init(this);
+        findViewById(R.id.txtMD5).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    testMD5();
+                } catch (NoSuchAlgorithmException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
+
+    private void testMD5() throws NoSuchAlgorithmException {
+
+    }
+
+    private <T> T a(Context context){
+        return (T) "s";
     }
 
     private String getSign(Context context){
