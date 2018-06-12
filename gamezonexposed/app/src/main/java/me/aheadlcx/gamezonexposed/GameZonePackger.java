@@ -20,13 +20,15 @@ import de.robv.android.xposed.callbacks.XC_LoadPackage;
 public class GameZonePackger implements IXposedHookLoadPackage {
     private static final String TAG = "GameZonePackger";
 
+    //com.huya.videozone
     @Override
     public void handleLoadPackage(XC_LoadPackage.LoadPackageParam lpparam) throws Throwable {
         if (lpparam.packageName.equals("tv.danmaku.bili")) {
             Log.i(TAG, "找到Bili了 : " + lpparam.packageName);
         }
-        if (!lpparam.packageName.equals("tv.danmaku.bili")) {
-//            Log.i(TAG, "handleLoadPackage: lpparam.packageName " + lpparam.packageName);
+        if (!lpparam.packageName.equals("tv.danmaku.bili") && !"com.huya.videozone".equals(lpparam
+                .packageName)) {
+            Log.i(TAG, "handleLoadPackage: lpparam.packageName " + lpparam.packageName);
             return;
         } else {
 
@@ -54,7 +56,6 @@ public class GameZonePackger implements IXposedHookLoadPackage {
                         super.beforeHookedMethod(param);
                     }
                 });
-
 
 
         XposedHelpers.findAndHookMethod("java.lang.System",
@@ -87,6 +88,54 @@ public class GameZonePackger implements IXposedHookLoadPackage {
                     }
                 });
 
+
+        XposedHelpers.findAndHookMethod("java.net.NetworkInterface",
+                lpparam.classLoader, "getName", new XC_MethodHook() {
+                    @Override
+                    protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+//                        Log.i(TAG, " NetworkInterface getName afterHookedMethod: " + param.args[0]);
+                        String result = (String) param.getResult();
+                        Log.i(TAG, "NetworkInterface afterHookedMethod: param.getResult()" +
+                                result);
+                        if (result != null && (result.equals("tun0") ||result.equals("ppp0"))){
+                            param.setResult("dummy0");
+                        }
+                        Log.i(TAG, " --------------: after setResult param" +
+                                ".getResult() =" +
+                                param.getResult() + "-----");
+                        super.afterHookedMethod(param);
+                    }
+
+                    @Override
+                    protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
+                        super.beforeHookedMethod(param);
+                    }
+                });
+
+
+        XposedHelpers.findAndHookMethod("tv.danmaku.ijk.media.player.IjkMediaPlayer",
+                lpparam.classLoader, "setDataSource",String.class,  new XC_MethodHook() {
+                    @Override
+                    protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+//                        Log.i(TAG, " NetworkInterface getName afterHookedMethod: " + param.args[0]);
+                        String result = (String) param.getResult();
+                        Log.i(TAG, "NetworkInterface afterHookedMethod: param.getResult()" +
+                                result);
+                        if (result != null && (result.equals("tun0") ||result.equals("ppp0"))){
+                            param.setResult("dummy0");
+                        }
+                        Log.i(TAG, " --------------: after setResult param" +
+                                ".getResult() =" +
+                                param.getResult() + "-----");
+                        super.afterHookedMethod(param);
+                    }
+
+                    @Override
+                    protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
+                        super.beforeHookedMethod(param);
+                        Log.i(TAG, "beforeHookedMethod:  bilibili 视频 url 信息" + param.args[0]);
+                    }
+                });
 
 
 //        Class<?> hookClass = null;

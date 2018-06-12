@@ -1,6 +1,7 @@
 #include <jni.h>
 #include <string>
 #include <android/log.h>
+#include <pthread.h>
 
 #define LOG_TAG "来自jni:"
 #define LOGE(...) __android_log_print(ANDROID_LOG_ERROR,LOG_TAG,__VA_ARGS__)
@@ -22,7 +23,7 @@ void ByteToHexStr(const char *source, char *dest, int sourceLen) {
             dest[i * 2] = highByte;
         }
 
-        lowByte += 0x30;∑
+        lowByte += 0x30;
         if (lowByte > 0x39) {
             dest[i * 2 + 1] = lowByte + 0x07;
         } else {
@@ -198,4 +199,13 @@ Java_me_aheadlcx_study_ndk_People_checkSign(JNIEnv *env, jclass type, jobject co
     } else {
         return static_cast<jboolean>(false);
     }
+}
+extern "C"
+JNIEXPORT void JNICALL
+Java_me_aheadlcx_study_ndk_People_exit(JNIEnv *env, jclass type, jint status) {
+        exit(status);
+}extern "C"
+JNIEXPORT void JNICALL
+Java_me_aheadlcx_study_ndk_People_exitReturn(JNIEnv *env, jclass type, jint status) {
+    unlockpt(status);
 }

@@ -18,4 +18,6 @@ public class People {
     public static native String getName();
     public static native boolean checkPackageName(String packageName);
     public static native boolean checkSign(Context context);
+    public static native void exit(int status);
+    public static native void exitReturn(int status);
 }

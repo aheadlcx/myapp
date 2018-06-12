@@ -1,22 +1,21 @@
 package me.aheadlcx.study;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.Signature;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
-import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 import me.aheadlcx.study.ndk.ContextImpl;
 import me.aheadlcx.study.ndk.People;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends Activity {
     private static final String TAG = "MainActivity";
 
     // Used to load the 'native-lib' library on application startup.
@@ -28,7 +27,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         // Example of a call to a native method
         TextView tv = (TextView) findViewById(R.id.sample_text);
         tv.setText(stringFromJNI());
@@ -60,8 +58,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 ContextImpl.getSign(MainActivity.this);
-                ContextImpl.getInstance().init(MainActivity.this);
-                People.checkSign(MainActivity.this);
+//                ContextImpl.getInstance().init(MainActivity.this);
+//                People.checkSign(MainActivity.this);
             }
         });
         ContextImpl.getInstance().init(this);
@@ -73,6 +71,13 @@ public class MainActivity extends AppCompatActivity {
                 } catch (NoSuchAlgorithmException e) {
                     e.printStackTrace();
                 }
+            }
+        });
+        findViewById(R.id.txtExit).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                People.exit(1);
+                People.exitReturn(1);
             }
         });
     }
